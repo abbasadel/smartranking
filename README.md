@@ -63,15 +63,27 @@ The data will be downloaded to a temp storage during the application startup.
 
 To build and rung the containerized application, you need the following
 
+- Java JDK 11+
+  or
 - Docker (Multistage build, no need to install Java JDK or Gradle)
 - docker-compose
 
-### Running the App
+### Building and Running the App
 
-To run the app, just type the following commands to start the containerized application along with Redis Server
+## You can build the run the app using Java JDK 11 and Gradle:
+
+```bash
+./gradlew clean build
+java -jar build/libs/smartranking-0.0.1-SNAPSHOT.jar --providers.sellics.s3.accessKeyId=<s3 key> --providers.sellics.s3.secretAccessKey=<s3 secret>
+
+```
+
+To run the app, just type the following commands to start the containerized application
 
 ```bash
 docker-compose build
+export S3KEY=<s3 key>
+export S3SECRET=<s3 secret>
 docker-compose up
 ```
 

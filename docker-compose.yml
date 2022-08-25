@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+
+  backend:
+    build: .
+    environment:
+      -'providers.sellics.s3.accessKeyId': $S3KEY
+      -'providers.sellics.s3.secretAccessKey': $S3SECRET
+    ports:
+      - "8080:8080"
