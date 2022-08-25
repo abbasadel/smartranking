@@ -42,7 +42,7 @@ public class RankingService {
                     TimeSeries::getTimestamp,
                     aggregator.get().getAggregatorStrategy());
             return ts.collect(collector)
-                    .map(m -> m.entrySet().stream().map(TimeSeries::of).toList());
+                    .map(m -> m.entrySet().stream().map(TimeSeries::of).collect(Collectors.toList()));
         }
 
         return ts.collect(Collectors.toList());

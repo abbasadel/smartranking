@@ -21,7 +21,7 @@ class SellicsDataProviderTest {
 
     @BeforeEach
     void setUp() throws URISyntaxException {
-        SellicsClient sellicsClient = Mockito.spy(new SellicsClient(null, null));
+        sellicsClient = Mockito.spy(new SellicsClient(null, null));
         Path testDataLocation = Path.of(ClassLoader.getSystemResource("testdata/data-test.csv").toURI());
 
         //mock data
@@ -38,7 +38,7 @@ class SellicsDataProviderTest {
 
         //then
         StepVerifier.create(result)
-                .expectNext(TimeSeries.of(1637024931, 91))
+                .expectNext(TimeSeries.of(1637024931, 1))
                 .expectNextCount(18)
                 .expectComplete()
                 .verify();
