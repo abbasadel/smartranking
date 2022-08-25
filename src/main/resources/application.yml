@@ -1,0 +1,8 @@
+providers:
+  sellics:
+    s3:
+      region: eu-central-1
+      accessKeyId:
+      secretAccessKey:
+      bucket: sellics-casestudy-organic
+      filename: public/case-keywords.csv
