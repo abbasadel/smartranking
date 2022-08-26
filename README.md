@@ -11,8 +11,8 @@ through a smart ranking index REST API that help retailers make sense of this da
 
 - The REST APIs will provide the response in JSON format
 - The format will a JSON array of 2 keys; `timestamp` and `value`
-  -- `timestamp`: will be in `YYYY-MM-DDThh:mi:ssZ`, eg: `2021-11-02T01:07:14Z`
-  -- `value`: is double
+    - `timestamp`: will be in `YYYY-MM-DDThh:mi:ssZ`, eg: `2021-11-02T01:07:14Z`
+    - `value`: is double
 - The returned JSON array is not guaranteed to be sorted, it is the responsibility of the FE framework to sort the data
   when needed. This limitation comes due to the parallel processing of the provided data.
 - Since the aggregation method is not specified, the application is exposing 3 methods to aggregate the data.
@@ -44,12 +44,12 @@ The App is designed using Layered Architecture
 
 #### Loading/Querying the data file
 
-| Option                         | Description                                                                              | Pros                                                                                                                                                           | Cons                                                                                                                                                              | Comment |
-|--------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| 1. Query the data file online  | On every request, download the file. Query the file then delete it.                      | - Data is up to data <br />                                                                                                                                    | - Slow response. <br /> - More memory usage                                                                                                                       |         |
-| 2. Query the data file offline | Download the data file once or frequent on the application side and query it from there. | - More efficient then option 1. <br />                                                                                                                         | - Stall data. <br /> - Download time may affect the application startup. - Thread/Synchronization problems                                                        |         |
-| 3. Stream the data file        | Reading and processing the data file in chunks                                           | - Less memory usage on the application side <br />  - Scalable when the data grows <br /> - Data is always up to date <br /> - Non-blocking on the client side | - This is a new feature of S3, never battle tested. <br /> - Needs more time to fine tuning                                                                       |         |
-| 4. Use Timeseries Database     | Load the data file into a TS database                                                    | - Easier to query \and manipulate<br/> - Scalable when the data grows. <br /> - Less processing and memory usage on the application side                       | - Loading and syncing the data. <br /> - Operating and maintaining the TSDB. <br /> - High learning curve to use and understand TSDB for the code challenge scope |         |
+| Option                         | Description                                                                                | Pros                                                                                                                                                           | Cons                                                                                                                                                              | Comment |
+|--------------------------------|--------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| 1. Query the data file online  | On every request, download the file. Query the file then delete it.                        | - Data is up to data <br />                                                                                                                                    | - Slow response. <br /> - More memory usage                                                                                                                       |         |
+| 2. Query the data file offline | Download the data file once or frequently on the application side and query it from there. | - More efficient then option 1. <br />                                                                                                                         | - Stall data. <br /> - Download time may affect the application startup. <br /> - Thread/Synchronization problems                                                 |         |
+| 3. Stream the data file        | Reading and processing the data file in chunks                                             | - Less memory usage on the application side <br />  - Scalable when the data grows <br /> - Data is always up to date <br /> - Non-blocking on the client side | - This is a new feature of S3, never battle tested. <br /> - Needs more time to fine tuning                                                                       |         |
+| 4. Use Timeseries Database     | Load the data file into a TS database                                                      | - Easier to query \and manipulate<br/> - Scalable when the data grows. <br /> - Less processing and memory usage on the application side                       | - Loading and syncing the data. <br /> - Operating and maintaining the TSDB. <br /> - High learning curve to use and understand TSDB for the code challenge scope |         |
 
 ##### Decision
 
@@ -63,14 +63,16 @@ The data will be downloaded to a temp storage during the application startup.
 
 To build and rung the containerized application, you need the following
 
-- Java JDK 11+
+- Java JDK 17+
+
   or
+
 - Docker (Multistage build, no need to install Java JDK or Gradle)
 - docker-compose
 
 ### Building and Running the App
 
-## You can build the run the app using Java JDK 11 and Gradle:
+You can build the run the app using Java JDK 17 and Gradle. You will need to provide AWS S3 keys as parameters
 
 ```bash
 ./gradlew clean build
@@ -78,7 +80,7 @@ java -jar build/libs/smartranking-0.0.1-SNAPSHOT.jar --providers.sellics.s3.acce
 
 ```
 
-To run the app, just type the following commands to start the containerized application
+or you can run the app using Docker, just type the following commands to start the containerized application
 
 ```bash
 docker-compose build
@@ -110,6 +112,10 @@ The output is JSON format similar to the following:
   }
 ]
 ```
+
+### Open API Docs:
+
+http://localhost:8080/webjars/swagger-ui/index.html#
 
 ### Nice to have
 

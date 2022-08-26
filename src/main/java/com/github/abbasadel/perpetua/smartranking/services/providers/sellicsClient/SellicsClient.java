@@ -49,8 +49,8 @@ public class SellicsClient {
     static Flux<CsvRecord> parseDataFile(final Path dataFileLocation) {
         return Flux.using(
                 () -> Files.lines(dataFileLocation)
-                        .skip(1)
-                        .map(line -> CsvRecord.of(line.split(";"))),
+                        .skip(1) //TODO: can be a config
+                        .map(line -> CsvRecord.of(line.split(";"))), //TODO: can be a config
                 Flux::fromStream,
                 Stream::close
         );

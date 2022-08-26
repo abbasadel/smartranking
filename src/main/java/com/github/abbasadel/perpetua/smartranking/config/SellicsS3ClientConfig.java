@@ -15,6 +15,9 @@ import software.amazon.awssdk.utils.StringUtils;
 
 import java.time.Duration;
 
+/**
+ * Sellics AWS S3 configuration goes here
+ */
 @Configuration
 @EnableConfigurationProperties(SellicsClientProperties.class)
 public class SellicsS3ClientConfig {

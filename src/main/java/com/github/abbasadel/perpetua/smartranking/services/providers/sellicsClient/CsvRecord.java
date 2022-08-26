@@ -10,7 +10,10 @@ public class CsvRecord {
     final short rank;
 
     public static CsvRecord of(String[] values) {
-        assert values.length == 4; // error possible here
+        if (values.length != 4) {
+            throw new IllegalArgumentException("Invalid array size, should be 4 and not " + values.length);
+        }
+
         return new CsvRecord(
                 Long.parseLong(values[0]),
                 values[1],

@@ -11,6 +11,10 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 
+/**
+ * AggregatorStrategy is an abstract class that implements java Collector pattern
+ * The purpose is to provide a custom implementation for steam processor to aggregate data
+ */
 public abstract class AggregatorStrategy implements Collector<TimeSeries, List<TimeSeries>, Double> {
 
 

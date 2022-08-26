@@ -22,10 +22,10 @@ repositories {
 dependencies {
     implementation platform('software.amazon.awssdk:bom:2.17.257')
 
-
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'software.amazon.awssdk:s3'
     implementation 'software.amazon.awssdk:netty-nio-client'
+    implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.6.10'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

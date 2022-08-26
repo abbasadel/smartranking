@@ -6,6 +6,9 @@ import com.github.abbasadel.perpetua.smartranking.services.AggregatorStrategy;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * A custom TimeSeries aggregator using arithmetic mean
+ */
 public class MeanAggregator extends AggregatorStrategy {
 
     @Override

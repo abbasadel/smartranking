@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import reactor.core.publisher.Flux;
 
+import java.util.Objects;
+
 @Service
 public class SellicsDataProvider {
 
@@ -16,10 +18,12 @@ public class SellicsDataProvider {
     private final SellicsClient sellicsClient;
 
     public Flux<TimeSeries> findRakingByAsin(final String asin) {
+        Objects.requireNonNull(asin, "ASIN can't be null");
         return findRakingByAsinAndKeyword(asin, null);
     }
 
     public Flux<TimeSeries> findRakingByKeyword(final String keyword) {
+        Objects.requireNonNull(keyword, "keyword can't be null");
         return findRakingByAsinAndKeyword(null, keyword);
     }
 

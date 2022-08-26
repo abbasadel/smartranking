@@ -5,6 +5,9 @@ import com.github.abbasadel.perpetua.smartranking.services.AggregatorStrategy;
 
 import java.util.List;
 
+/**
+ * A custom TimeSeries aggregator using the sum of the datapoints
+ */
 public class SumAggregator extends AggregatorStrategy {
 
     @Override

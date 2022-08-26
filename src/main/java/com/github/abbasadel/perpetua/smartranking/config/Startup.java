@@ -6,6 +6,10 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+/**
+ * Here we put all the startup logic that needs to run
+ * after Spring Context initialization
+ */
 @Component
 @Log
 public class Startup {

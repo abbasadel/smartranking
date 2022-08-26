@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import software.amazon.awssdk.regions.Region;
 
+
 @ConfigurationProperties(prefix = "providers.sellics.s3")
 @Data
 public class SellicsClientProperties {
